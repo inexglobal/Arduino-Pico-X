@@ -44,7 +44,7 @@ void init(void){
 	oled.begin(SSD1309_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   oled.show();
 }
-// Set Address iKBz
+// Set init
 void init(int _addre){
 	oled.begin(SSD1309_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   oled.show();
@@ -91,7 +91,7 @@ void servo(uint8_t ch,int angle){
   
 }
 
-void motor(int8_t ch, int power) {
+void motor(int8_t ch, int power,float t=0) {
   static bool isinitIO = false;
   if (!isinitIO) {
         pinMode(pinM1DIR,OUTPUT);
@@ -109,24 +109,26 @@ void motor(int8_t ch, int power) {
     digitalWrite(pinM2DIR,(_power >= 0? LOW : HIGH));
     analogWrite(pinM2EN, abs(pwm));
   }
-  
+  delay(t*1000);
 }
-void motor_stop(int8_t ch) {
+void motor_stop(int8_t ch,float t=0) {
   analogWrite(pinM1EN, 0);
   analogWrite(pinM2EN, 0);
+  delay(t*1000);
 }
 void ao(void) {
   motor(1, 0);
   motor(2, 0);
 }
-void fd(int power) {
+void fd(int power,float t=0) {
   power = (power > 100 ? 100 : power);
   power = (power < 0 ? 0 : power);
   motor(1, power);
   motor(2, power);
+  delay(t*1000);
  
 }
-void fd2(int power1,int power2) {
+void fd2(int power1,int power2,float t=0) {
   power1 = (power1 > 100 ? 100 : power1);
   power1 = (power1 < 0 ? 0 : power1);
   motor(1,power1);
@@ -135,16 +137,18 @@ void fd2(int power1,int power2) {
   power2 = (power2 < 0 ? 0 : power2);
   motor(2,power2);
   
+  delay(t*1000);
 
 }
-void bk(int power) {
+void bk(int power,float t=0) {
   power = (power > 100 ? 100 : power);
   power = (power < 0 ? 0 : power);
   motor(1, -power);
   motor(2, -power);
+  delay(t*1000);
 }
 
-void bk2(int power1,int power2) {
+void bk2(int power1,int power2,float t=0) {
   power1 = (power1 > 100 ? 100 : power1);
   power1 = (power1 < 0 ? 0 : power1);
   motor(1, -power1);
@@ -152,36 +156,40 @@ void bk2(int power1,int power2) {
   power2 = (power2 > 100 ? 100 : power2);
   power1 = (power2 < 0 ? 0 : power2);
   motor(2, -power2);
+  delay(t*1000);
 
 }
 
-void sl(int power) {
+void sl(int power,float t=0) {
   power = (power > 100 ? 100 : power);
   power = (power < 0 ? 0 : power);
   motor(1, -power);
   motor(2, power);
+  delay(t*1000);
 }
 
-void sr(int power) {
+void sr(int power,float t=0) {
   power = (power > 100 ? 100 : power);
   power = (power < 0 ? 0 : power);
   motor(1, power);
   motor(2, -power);
+  delay(t*1000);
 }
 
-void tl(int power) {
+void tl(int power,float t=0) {
   power = (power > 100 ? 100 : power);
   power = (power < 0 ? 0 : power);
   motor(1, 0);
   motor(2, power);
-
+  delay(t*1000);
 }
 
-void tr(int power) {
+void tr(int power,float t=0) {
   power = (power > 100 ? 100 : power);
   power = (power < 0 ? 0 : power);
   motor(1, power);
   motor(2, 0);
+  delay(t*1000);
 }
 
 int analog(uint8_t ch){
