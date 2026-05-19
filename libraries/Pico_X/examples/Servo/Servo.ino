@@ -1,16 +1,15 @@
-#include <IROVER.h>
+#include <PICOX.h>
 void setup() {
-  init(0x48); // set iKB1z address 0x48
 }
 void loop() {
   for (int  i = 1; i <= 180; i++) {
-    // set servo port 10 degree to i
-    servo(10, i);
+    // set servo port 1 degree to i
+    servo(1, i);
     delay(20);
   }
   for (int  i = 180; i >= 1; i--) {
-    // set servo port 10 degree to i
-    servo(10, i);
+    // set servo port 1 degree to i
+    servo(1, i);
     delay(20);
   }
 }

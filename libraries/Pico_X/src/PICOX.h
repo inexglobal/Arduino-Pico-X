@@ -65,25 +65,25 @@ void servo(uint8_t ch,int angle){
 
     if (ch == 1) {
         if (!isSV1Attached) {
-            SV1.attach(pinSV1);
+            SV1.attach(pinSV1,500,2500);
             isSV1Attached = true; // ตั้งค่าเป็น true เพื่อไม่ให้เข้าเงื่อนไขนี้อีก
         }
         SV1.write(angle);
     }else if (ch == 2) {
         if (!isSV2Attached) {
-            SV2.attach(pinSV2);
+            SV2.attach(pinSV2,500,2500);
             isSV2Attached = true; // ตั้งค่าเป็น true เพื่อไม่ให้เข้าเงื่อนไขนี้อีก
         }
         SV2.write(angle);
     }else if (ch == 3) {
         if (!isSV3Attached) {
-            SV3.attach(pinSV3);
+            SV3.attach(pinSV3,500,2500);
             isSV3Attached = true; // ตั้งค่าเป็น true เพื่อไม่ให้เข้าเงื่อนไขนี้อีก
         }
         SV3.write(angle);
     }else if (ch == 4) {
         if (!isSV4Attached) {
-            SV4.attach(pinSV4);
+            SV4.attach(pinSV4,500,2500);
             isSV4Attached = true; // ตั้งค่าเป็น true เพื่อไม่ให้เข้าเงื่อนไขนี้อีก
         }
         SV4.write(angle);

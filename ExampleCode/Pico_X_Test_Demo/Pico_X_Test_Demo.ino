@@ -79,8 +79,8 @@ void setup() {
   digitalWrite(led1_Pin, LOW);
   digitalWrite(led2_Pin, HIGH);
   delay(500);
-  digitalWrite(led1_Pin, LOW);
-  digitalWrite(led2_Pin, LOW);
+  digitalWrite(led1_Pin, HIGH);
+  digitalWrite(led2_Pin, HIGH);
 
   oled.clearDisplay();
   oled.textSize(2);
